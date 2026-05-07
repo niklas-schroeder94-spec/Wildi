@@ -168,21 +168,25 @@
       .section-heading p { margin: 0.8rem auto 0; max-width: 740px; color: #4d655f; }
       .team-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(240px, 1fr));
-        gap: clamp(1rem, 2.5vw, 1.6rem);
+        grid-template-columns: repeat(2, minmax(320px, 1fr));
+        gap: clamp(1.2rem, 3vw, 2rem);
       }
       .team-card {
         background: #fff;
         border-radius: 1rem;
         box-shadow: var(--shadow-soft);
-        padding: 1.4rem;
+        padding: 1.8rem;
         transition: transform 0.3s ease;
+        display: grid;
+        grid-template-columns: minmax(140px, 200px) 1fr;
+        align-items: center;
+        gap: 1.4rem;
       }
       .team-card:hover { transform: translateY(-6px); }
       .team-avatar {
-        width: 84px;
+        width: clamp(140px, 17vw, 200px);
         aspect-ratio: 1;
-        border-radius: 50%;
+        border-radius: 0.9rem;
         overflow: hidden;
         border: 3px solid var(--sage);
       }
@@ -193,7 +197,7 @@
         transition: transform 0.35s ease;
       }
       .team-card:hover .team-avatar img { transform: scale(1.07); }
-      .team-card h3 { margin: 0.9rem 0 0.1rem; }
+      .team-card h3 { margin: 0 0 0.2rem; font-size: clamp(1.25rem, 2.2vw, 1.65rem); }
       .accent-line {
         height: 3px;
         width: 70px;
@@ -204,6 +208,18 @@
       .team-card:hover .accent-line { background: var(--gold); }
       .team-role { font-weight: 600; color: #36564e; margin: 0; }
       .team-card p:last-child { margin-bottom: 0.2rem; color: #5d726d; }
+      .team-copy p { margin-top: 0.65rem; }
+
+      @media (max-width: 900px) {
+        .team-grid { grid-template-columns: 1fr; }
+      }
+      @media (max-width: 620px) {
+        .team-card { grid-template-columns: 1fr; }
+        .team-avatar {
+          width: min(100%, 260px);
+          justify-self: center;
+        }
+      }
 
       /* Section 3: KPI Bento */
       .kpi { background: #eef2eb; }
@@ -342,32 +358,36 @@
       </header>
       <div class="team-grid">
         <article class="team-card">
-          <div class="team-avatar"><img src="https://picsum.photos/seed/fiber-1/300" alt="Portrait von Dr. Lena Fischer" /></div>
-          <h3>Dr. Lena Fischer</h3>
-          <div class="accent-line"></div>
-          <p class="team-role">LCA &amp; Sustainability Lead</p>
-          <p>Steuert die CO2e-Modellierung und belastbare Cradle-to-Gate-Verifikation über alle Prozessstufen.</p>
+          <div class="team-avatar"><img src="Süren.png" alt="Portrait von Mehmet Süren" /></div>
+          <div class="team-copy">
+            <h3>Mehmet Süren</h3>
+            <div class="accent-line"></div>
+            <p class="team-role">Projektleiter</p>
+          </div>
         </article>
         <article class="team-card">
-          <div class="team-avatar"><img src="https://picsum.photos/seed/fiber-2/300" alt="Portrait von Marco Bellini" /></div>
-          <h3>Marco Bellini</h3>
-          <div class="accent-line"></div>
-          <p class="team-role">Lead Engineer Paper Tech</p>
-          <p>Verantwortet den Umbau zur Hochgeschwindigkeitsproduktion bei kompromissloser Barrierequalität.</p>
+          <div class="team-avatar"><img src="Niklas.jpg" alt="Portrait von Niklas Schröder" /></div>
+          <div class="team-copy">
+            <h3>Niklas Schröder</h3>
+            <div class="accent-line"></div>
+            <p class="team-role">Produktionsleiter</p>
+          </div>
         </article>
         <article class="team-card">
-          <div class="team-avatar"><img src="https://picsum.photos/seed/fiber-3/300" alt="Portrait von Amira Shah" /></div>
-          <h3>Amira Shah</h3>
-          <div class="accent-line"></div>
-          <p class="team-role">Operations &amp; Retrofit Manager</p>
-          <p>Orchestriert das Re-Engineering von Energie, Stoffaufbereitung und Inbetriebnahme in einer Linie.</p>
+          <div class="team-avatar"><img src="Mark.jpg" alt="Portrait von Mark Zimmermann" /></div>
+          <div class="team-copy">
+            <h3>Mark Zimmermann</h3>
+            <div class="accent-line"></div>
+            <p class="team-role">Energie Manager</p>
+          </div>
         </article>
         <article class="team-card">
-          <div class="team-avatar"><img src="https://picsum.photos/seed/fiber-4/300" alt="Portrait von Julian Krüger" /></div>
-          <h3>Julian Krüger</h3>
-          <div class="accent-line"></div>
-          <p class="team-role">Innovation &amp; Market Strategy</p>
-          <p>Übersetzt die technologische Transformation in messbaren Premium-Markenwert und Marktführerschaft.</p>
+          <div class="team-avatar"><img src="Angi.jpg" alt="Portrait von Angelina Diesterweg" /></div>
+          <div class="team-copy">
+            <h3>Angelina Diesterweg</h3>
+            <div class="accent-line"></div>
+            <p class="team-role">Nachhaltigkeit &amp; Qualität</p>
+          </div>
         </article>
       </div>
     </section>
