@@ -526,25 +526,10 @@
           </div>
 
           <div class="video-shell" aria-label="Introvideo">
-            <!-- Später das echte Video in den Ordner assets legen und den Dateinamen anpassen. -->
-            <video id="introVideo" preload="metadata" playsinline poster="">
-              <source src="assets/fibershield-intro.mp4" type="video/mp4" />
+            <video id="introVideo" preload="metadata" playsinline controls>
+              <source src="imagefilm.mp4" type="video/mp4" />
               Dein Browser unterstützt das Videoformat nicht.
             </video>
-
-            <button class="video-placeholder" id="videoOverlay" type="button" aria-label="Intro-Video starten">
-              <div class="play-card">
-                <span class="play-button" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-                </span>
-                <div>
-                  <h2>Intro-Video starten</h2>
-                  <p></p>
-                </div>
-              </div>
-            </button>
-
-
           </div>
         </div>
       </section>
@@ -570,22 +555,5 @@
 
   <div class="swipe-hint">Swipe oder Pfeiltaste nach rechts</div>
 
-  <script>
-    const video = document.getElementById('introVideo');
-    const overlay = document.getElementById('videoOverlay');
-
-    overlay.addEventListener('click', async () => {
-      overlay.style.opacity = '0';
-      overlay.style.pointerEvents = 'none';
-      try {
-        await video.play();
-        video.setAttribute('controls', 'controls');
-      } catch (error) {
-        overlay.style.opacity = '1';
-        overlay.style.pointerEvents = 'auto';
-        alert('Das Video ist noch nicht eingebunden. Lege es später unter assets/fibershield-intro.mp4 ab.');
-      }
-    });
-  </script>
 </body>
 </html>
