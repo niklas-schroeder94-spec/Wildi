@@ -106,6 +106,20 @@
         font-size: clamp(1rem, 2vw, 1.5rem);
         color: #d8e5df;
       }
+      .hero-player {
+        margin: 1.4rem auto 0;
+        width: min(760px, 92vw);
+        border-radius: 0.8rem;
+        overflow: hidden;
+        box-shadow: 0 14px 35px rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(249, 247, 242, 0.35);
+        background: rgba(0, 0, 0, 0.3);
+      }
+      .hero-player video {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
       .scroll-indicator {
         position: absolute;
         bottom: 2rem;
@@ -301,14 +315,18 @@
     <!-- Section 1: Hero / Vision -->
     <section id="vision" class="page-section hero">
       <video class="hero-video" autoplay muted loop playsinline>
-        <source src="file:///C:/Users/nensr/OneDrive%20-%20Mayr-Melnhof%20Group/Desktop/Pr%C3%A4si/Image.mp4" type="video/mp4" />
         <source src="Image.mp4" type="video/mp4" />
-        Dein Browser kann das Hintergrundvideo nicht laden.
       </video>
       <div class="hero-overlay"></div>
       <div class="hero-content">
         <h1>FiberShield® – Definining the Future of Green Barriers</h1>
         <p>77,6% PCF-Reduktion trifft auf maximale Produktivität.</p>
+        <div class="hero-player">
+          <video controls preload="metadata">
+            <source src="Image.mp4" type="video/mp4" />
+            Dein Browser kann das Video nicht abspielen.
+          </video>
+        </div>
       </div>
       <div class="scroll-indicator" aria-hidden="true">
         <span class="mouse"></span>
