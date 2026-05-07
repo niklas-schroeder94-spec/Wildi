@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FiberShield – Unsere Vision</title>
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --bg-soft: #fffaf2;
+      --text: #171717;
+      --muted: #6b6258;
+      --line: rgba(23, 23, 23, 0.1);
+      --green: #2f7d3f;
+      --green-soft: #dfeadb;
+      --brown: #6a4529;
+      --gold: #d2a24c;
+      --card: rgba(255, 255, 255, 0.72);
+      --shadow: 0 30px 80px rgba(45, 34, 20, 0.16);
+      --radius-lg: 34px;
+      --radius-md: 22px;
+      --nav-height: 82px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 14% 18%, rgba(47, 125, 63, 0.18), transparent 26%),
+        radial-gradient(circle at 82% 20%, rgba(210, 162, 76, 0.2), transparent 24%),
+        radial-gradient(circle at 75% 82%, rgba(106, 69, 41, 0.12), transparent 30%),
+        linear-gradient(135deg, #fbf8f1 0%, #f1eadf 100%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: linear-gradient(rgba(23, 23, 23, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(23, 23, 23, 0.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.42), transparent 72%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .presentation {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 44px;
+      z-index: 20;
+      background: rgba(247, 244, 238, 0.72);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px;
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.45);
+      box-shadow: 0 10px 30px rgba(45, 34, 20, 0.08);
+    }
+
+    .nav-item {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 16px;
+      border-radius: 999px;
+      font: inherit;
+      font-size: 14px;
+      font-weight: 560;
+      letter-spacing: -0.01em;
+      cursor: default;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-item.active {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--green), #1f5e31);
+      box-shadow: 0 10px 25px rgba(47, 125, 63, 0.24);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 210px;
+      justify-content: flex-end;
+    }
+
+    .brand-name {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      line-height: 1.05;
+    }
+
+    .brand-name strong {
+      font-size: 16px;
+      letter-spacing: -0.03em;
+    }
+
+    .brand-name span {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .logo-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, 0.68);
+      box-shadow: 0 12px 26px rgba(45, 34, 20, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transform: translateX(0);
+      transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .slide {
+      flex: 0 0 100vw;
+      width: 100vw;
+      height: 100vh;
+      padding: calc(var(--nav-height) + 46px) 64px 42px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .vision-layout {
+      width: min(1280px, 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 34px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .copy {
+      text-align: center;
+      animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--green);
+      background: rgba(47, 125, 63, 0.08);
+      border: 1px solid rgba(47, 125, 63, 0.14);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 650;
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 0 6px rgba(47, 125, 63, 0.12);
+    }
+
+    h1 {
+      font-size: clamp(58px, 7vw, 104px);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      font-weight: 760;
+      margin-bottom: 0;
+      max-width: 980px;
+    }
+
+    .lead {
+      font-size: clamp(18px, 1.5vw, 23px);
+      line-height: 1.38;
+      color: var(--muted);
+      letter-spacing: -0.032em;
+      max-width: 560px;
+      margin-bottom: 34px;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      color: #3a342d;
+      font-size: 13px;
+      font-weight: 610;
+      box-shadow: 0 8px 22px rgba(45, 34, 20, 0.07);
+    }
+
+    .video-shell {
+      position: relative;
+      width: min(1180px, 100%);
+      aspect-ratio: 16 / 9;
+      min-height: 610px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(255, 250, 242, 0.6));
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      overflow: hidden;
+      animation: rise 1100ms 120ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .video-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 24%, rgba(47, 125, 63, 0.34), transparent 28%),
+        radial-gradient(circle at 78% 22%, rgba(210, 162, 76, 0.34), transparent 28%),
+        linear-gradient(160deg, rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.03));
+      z-index: 1;
+    }
+
+    .video-shell::after {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border-radius: calc(var(--radius-lg) - 14px);
+      border: 1px solid rgba(255, 255, 255, 0.54);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      min-height: 610px;
+      object-fit: cover;
+      display: block;
+      background: #1b1b1b;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 40px;
+      background:
+        linear-gradient(145deg, rgba(247, 244, 238, 0.34), rgba(255, 255, 255, 0.14)),
+        radial-gradient(circle at 32% 22%, rgba(47, 125, 63, 0.28), transparent 24%),
+        radial-gradient(circle at 74% 72%, rgba(210, 162, 76, 0.24), transparent 26%);
+      backdrop-filter: blur(2px);
+    }
+
+    .play-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      transform: translateY(8px);
+    }
+
+    .play-button {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 20px 50px rgba(45, 34, 20, 0.18);
+      display: grid;
+      place-items: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .play-button svg {
+      width: 34px;
+      height: 34px;
+      margin-left: 5px;
+      fill: var(--text);
+    }
+
+    .play-card:hover .play-button {
+      transform: scale(1.04);
+      box-shadow: 0 26px 70px rgba(45, 34, 20, 0.22);
+    }
+
+    .play-card h2 {
+      font-size: 28px;
+      letter-spacing: -0.052em;
+      font-weight: 720;
+    }
+
+    .play-card p {
+      display: none;
+    }
+
+    .video-note {
+      display: none;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      transform: translateX(-50%);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      border-radius: 999px;
+      padding: 8px 10px;
+      box-shadow: 0 14px 36px rgba(45, 34, 20, 0.12);
+      backdrop-filter: blur(18px);
+    }
+
+    .arrow-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 0;
+      background: rgba(255, 255, 255, 0.74);
+      display: grid;
+      place-items: center;
+      color: var(--text);
+      transition: transform 0.2s ease, background 0.2s ease, opacity 0.2s ease;
+    }
+
+    .arrow-btn[disabled] {
+      opacity: 0.3;
+    }
+
+    .arrow-btn:not([disabled]):hover {
+      transform: translateX(2px);
+      background: #ffffff;
+    }
+
+    .progress {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 4px;
+    }
+
+    .progress-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(23, 23, 23, 0.2);
+    }
+
+    .progress-dot.active {
+      width: 22px;
+      border-radius: 999px;
+      background: var(--green);
+    }
+
+    .swipe-hint {
+      position: fixed;
+      right: 52px;
+      bottom: 40px;
+      z-index: 19;
+      color: rgba(23, 23, 23, 0.48);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(28px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .topbar {
+        padding: 14px 20px;
+      }
+
+      .nav {
+        gap: 2px;
+        overflow: hidden;
+        max-width: calc(100vw - 130px);
+      }
+
+      .nav-item {
+        padding: 9px 11px;
+        font-size: 12px;
+      }
+
+      .brand-name {
+        display: none;
+      }
+
+      .brand {
+        min-width: auto;
+      }
+
+      .slide {
+        padding: calc(var(--nav-height) + 24px) 22px 90px;
+        place-items: start center;
+        overflow-y: auto;
+      }
+
+      .vision-layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      h1 {
+        font-size: 56px;
+        max-width: 100%;
+      }
+
+      .lead {
+        font-size: 18px;
+      }
+
+      .video-shell,
+      video {
+        min-height: 340px;
+      }
+
+      .swipe-hint {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" aria-label="Hauptnavigation">
+    <nav class="nav" aria-label="Präsentationsbereiche">
+      <button class="nav-item active" type="button">Unsere Vision</button>
+      <button class="nav-item" type="button">Team</button>
+      <button class="nav-item" type="button">Umbau</button>
+      <button class="nav-item" type="button">KPIs</button>
+      <button class="nav-item" type="button">PCF</button>
+      <button class="nav-item" type="button">Wirtschaftlichkeit</button>
+    </nav>
+
+    <div class="brand" aria-label="FiberShield">
+      <div class="brand-name">
+        <strong>FiberShield</strong>
+        <span>Nachhaltigkeit im Kreislauf</span>
+      </div>
+      <div class="logo-mark">
+        <img src="Logo.jpg" alt="FiberShield Logo" />
+      </div>
+    </div>
+  </header>
+
+  <main class="presentation" aria-label="FiberShield HTML-Präsentation">
+    <div class="slides" id="slides">
+      <section class="slide" aria-labelledby="vision-title">
+        <div class="vision-layout">
+          <div class="copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Unsere Vision</div>
+            <h1 id="vision-title">Aus Altpapier wird Zukunft.</h1>
+          </div>
+
+          <div class="video-shell" aria-label="Introvideo">
+            <!-- Später das echte Video in den Ordner assets legen und den Dateinamen anpassen. -->
+            <video id="introVideo" preload="metadata" playsinline poster="">
+              <source src="assets/fibershield-intro.mp4" type="video/mp4" />
+              Dein Browser unterstützt das Videoformat nicht.
+            </video>
+
+            <button class="video-placeholder" id="videoOverlay" type="button" aria-label="Intro-Video starten">
+              <div class="play-card">
+                <span class="play-button" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <div>
+                  <h2>Intro-Video starten</h2>
+                  <p></p>
+                </div>
+              </div>
+            </button>
+
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="bottom-nav" aria-label="Foliennavigation">
+    <button class="arrow-btn" type="button" disabled aria-label="Zurück">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6" /></svg>
+    </button>
+    <div class="progress" aria-label="Fortschritt">
+      <span class="progress-dot active"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+      <span class="progress-dot"></span>
+    </div>
+    <button class="arrow-btn" type="button" aria-label="Weiter">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6" /></svg>
+    </button>
+  </div>
+
+  <div class="swipe-hint">Swipe oder Pfeiltaste nach rechts</div>
+
+  <script>
+    const video = document.getElementById('introVideo');
+    const overlay = document.getElementById('videoOverlay');
+
+    overlay.addEventListener('click', async () => {
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+      try {
+        await video.play();
+        video.setAttribute('controls', 'controls');
+      } catch (error) {
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        alert('Das Video ist noch nicht eingebunden. Lege es später unter assets/fibershield-intro.mp4 ab.');
+      }
+    });
+  </script>
+</body>
+</html>
