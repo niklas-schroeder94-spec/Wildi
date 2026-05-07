@@ -359,6 +359,65 @@
       display: none;
     }
 
+    .team-layout {
+      width: min(1180px, 100%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      animation: rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(36px, 4.4vw, 56px);
+      letter-spacing: -0.05em;
+      font-weight: 730;
+      margin-bottom: 8px;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .team-card {
+      background: var(--card);
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      box-shadow: 0 16px 40px rgba(45, 34, 20, 0.12);
+      backdrop-filter: blur(16px);
+    }
+
+    .team-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      border-radius: 16px;
+      object-fit: cover;
+      background: linear-gradient(145deg, #ece5d8, #dfd3bf);
+      display: block;
+    }
+
+    .team-info {
+      padding: 14px 6px 6px;
+      text-align: center;
+    }
+
+    .team-info h3 {
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .team-info p {
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 570;
+      letter-spacing: -0.01em;
+    }
+
     .bottom-nav {
       position: fixed;
       left: 50%;
@@ -488,8 +547,18 @@
         min-height: 340px;
       }
 
+      .team-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
       .swipe-hint {
         display: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .team-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -526,10 +595,63 @@
           </div>
 
           <div class="video-shell" aria-label="Introvideo">
-            <video id="introVideo" preload="metadata" playsinline controls>
-              <source src="imagefilm.mp4" type="video/mp4" />
+            <!-- Später das echte Video in den Ordner assets legen und den Dateinamen anpassen. -->
+            <video id="introVideo" preload="metadata" playsinline poster="">
+              <source src="assets/fibershield-intro.mp4" type="video/mp4" />
               Dein Browser unterstützt das Videoformat nicht.
             </video>
+
+            <button class="video-placeholder" id="videoOverlay" type="button" aria-label="Intro-Video starten">
+              <div class="play-card">
+                <span class="play-button" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
+                </span>
+                <div>
+                  <h2>Intro-Video starten</h2>
+                  <p></p>
+                </div>
+              </div>
+            </button>
+
+
+          </div>
+        </div>
+      </section>
+      <section class="slide" aria-labelledby="team-title">
+        <div class="team-layout">
+          <div class="copy">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Team</div>
+            <h2 class="section-title" id="team-title">Unser Projektteam</h2>
+          </div>
+          <div class="team-grid" aria-label="Teammitglieder">
+            <article class="team-card">
+              <img class="team-photo" src="https://placehold.co/600x750/e9e0d0/2f7d3f?text=Team+1" alt="Porträt von Anna Müller" />
+              <div class="team-info">
+                <h3>Anna Müller</h3>
+                <p>Projektleitung</p>
+              </div>
+            </article>
+            <article class="team-card">
+              <img class="team-photo" src="https://placehold.co/600x750/e4d8c4/2f7d3f?text=Team+2" alt="Porträt von Leon Schneider" />
+              <div class="team-info">
+                <h3>Leon Schneider</h3>
+                <p>Technische Entwicklung</p>
+              </div>
+            </article>
+            <article class="team-card">
+              <img class="team-photo" src="https://placehold.co/600x750/eadfcb/2f7d3f?text=Team+3" alt="Porträt von Sofia Weber" />
+              <div class="team-info">
+                <h3>Sofia Weber</h3>
+                <p>Forschung &amp; Analyse</p>
+              </div>
+            </article>
+            <article class="team-card">
+              <img class="team-photo" src="https://placehold.co/600x750/efe7d7/2f7d3f?text=Team+4" alt="Porträt von David Fischer" />
+              <div class="team-info">
+                <h3>David Fischer</h3>
+                <p>Design &amp; Kommunikation</p>
+              </div>
+            </article>
           </div>
         </div>
       </section>
@@ -555,5 +677,22 @@
 
   <div class="swipe-hint">Swipe oder Pfeiltaste nach rechts</div>
 
+  <script>
+    const video = document.getElementById('introVideo');
+    const overlay = document.getElementById('videoOverlay');
+
+    overlay.addEventListener('click', async () => {
+      overlay.style.opacity = '0';
+      overlay.style.pointerEvents = 'none';
+      try {
+        await video.play();
+        video.setAttribute('controls', 'controls');
+      } catch (error) {
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        alert('Das Video ist noch nicht eingebunden. Lege es später unter assets/fibershield-intro.mp4 ab.');
+      }
+    });
+  </script>
 </body>
 </html>
