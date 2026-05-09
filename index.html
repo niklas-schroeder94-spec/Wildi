@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FibreShield – Nachhaltigkeitskonzept</title>
+  <style>
+    :root {
+      --bg: #f4fbf6;
+      --surface: #ffffff;
+      --text: #1f3a2a;
+      --muted: #4f6d5d;
+      --accent: #2d8f5b;
+      --accent-soft: #d8f0e3;
+      --shadow: 0 10px 24px rgba(23, 64, 43, 0.12);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #f7fdf9 0%, #ecf8f0 60%, #e6f5eb 100%);
+      line-height: 1.6;
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 84px 20px 48px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .logo-bar {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      right: 16px;
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(45, 143, 91, 0.18);
+      border-radius: 999px;
+      padding: 8px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .logo {
+      height: 46px;
+      width: auto;
+      display: block;
+    }
+
+    h1 {
+      font-size: clamp(1.9rem, 2.8vw, 3rem);
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+    }
+
+    .hero {
+      background: var(--surface);
+      border: 1px solid #dcefe4;
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .video-wrap {
+      margin-top: 18px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #cde6d6;
+      background: #dff2e7;
+    }
+
+    video {
+      width: 100%;
+      display: block;
+      max-height: 65vh;
+      object-fit: cover;
+    }
+
+    .pill {
+      display: inline-block;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header class="logo-bar">
+    <img class="logo" src="Logo.png" alt="FibreShield Logo" />
+    <strong>FibreShield</strong>
+  </header>
+
+  <main class="page">
+    <section class="hero">
+      <span class="pill">Nachhaltigkeitskonzept</span>
+      <h1>Willkommen bei FibreShield</h1>
+      <p class="subtitle">
+        Unser Konzept steht für nachhaltige Materialien, ressourcenschonende Prozesse und eine grüne Zukunft.
+        Deshalb ist die Startseite jetzt bewusst heller, freundlicher und natürlicher gestaltet.
+      </p>
+
+      <div class="video-wrap">
+        <video controls autoplay muted loop playsinline>
+          <source src="Image.mp4" type="video/mp4" />
+          Dein Browser unterstützt das Video-Tag nicht.
+        </video>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
